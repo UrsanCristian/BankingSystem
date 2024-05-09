@@ -22,9 +22,17 @@
   - Date of birth
   - List of bank accounts --> 1 to many
 
+- Bank
+  - Name
+  - Address
+  - Phone number
+  - Email
+  - List of Bank Acounts --> 1 to many
+
 - Bank account
     - Account number
     - Balance
+    - Currency
     - List of transactions --> 1 to many
     - List of loans --> 1 to many
 
