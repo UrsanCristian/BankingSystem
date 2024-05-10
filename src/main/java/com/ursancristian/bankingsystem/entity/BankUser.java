@@ -37,7 +37,7 @@ public class BankUser {
 
     private LocalDate DateOfBirth;
 
-    private String Role;
+    private String Role="USER";
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<BankAccount> bankAccounts;
