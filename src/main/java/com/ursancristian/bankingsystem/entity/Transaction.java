@@ -21,7 +21,7 @@ public class Transaction {
 
     private double amount;
 
-    private LocalDateTime transactionDate;
+    private LocalDateTime transactionDate = LocalDateTime.now();
 
     private String description;
 

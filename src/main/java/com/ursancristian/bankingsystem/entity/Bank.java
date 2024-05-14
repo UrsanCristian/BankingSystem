@@ -26,6 +26,8 @@ public class Bank {
 
     private String contactEmail;
 
+    private Double budget=1000000.0;
+
     @OneToMany(mappedBy = "bank", cascade = CascadeType.ALL)
     private List<BankAccount> bankAccounts;
 }

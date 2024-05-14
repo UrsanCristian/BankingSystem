@@ -20,7 +20,7 @@ public class BankAccount {
 
     private String accountNumber;
 
-    private CurrencyEnum currency;
+    private String currency;
 
     private double balance = 0.0;
 
