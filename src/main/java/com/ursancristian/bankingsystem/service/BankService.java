@@ -6,6 +6,8 @@ import com.ursancristian.bankingsystem.repository.BankRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BankService {
@@ -21,5 +23,13 @@ public class BankService {
         bank.setContactEmail(bankDTO.contactEmail());
 
         bankRepository.save(bank);
+    }
+
+    public Bank getBank(int bankId) {
+        return bankRepository.findById(bankId).orElse(null);
+    }
+
+    public List<Bank> getAllBanks() {
+        return bankRepository.findAll();
     }
 }
