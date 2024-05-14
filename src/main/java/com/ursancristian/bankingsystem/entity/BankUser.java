@@ -42,10 +42,4 @@ public class BankUser {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<BankAccount> bankAccounts;
 
-    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
-    private List<Transaction> transactionsSent;
-
-    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
-    private List<Transaction> transactionsReceived;
-
 }

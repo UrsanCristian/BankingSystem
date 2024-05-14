@@ -1,5 +1,5 @@
 package com.ursancristian.bankingsystem.entity;
-
+import com.ursancristian.bankingsystem.enumeration.StatusEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,8 +26,10 @@ public class Transaction {
     private String description;
 
     @ManyToOne
-    private BankUser sender;
+    private BankAccount senderAccount;
 
     @ManyToOne
-    private BankUser receiver;
+    private BankAccount receiverAccount;
+
+    private StatusEnum status;
 }

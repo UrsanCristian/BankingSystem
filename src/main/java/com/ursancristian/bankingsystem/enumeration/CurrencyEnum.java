@@ -1,0 +1,25 @@
+package com.ursancristian.bankingsystem.enumeration;
+
+public enum CurrencyEnum {
+    RON,
+    EUR,
+    USD,
+    GBP,
+    CHF,
+    JPY,
+    AUD,
+    CAD,
+    SEK,
+    NOK,
+    DKK,
+    CZK,
+    PLN,
+    HUF,
+    HRK,
+    RUB,
+    TRY,
+    BGN,
+    ISK,
+    INR,
+    CNY,
+}
