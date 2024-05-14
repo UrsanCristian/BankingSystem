@@ -1,5 +1,6 @@
 package com.ursancristian.bankingsystem.entity;
 
+import com.ursancristian.bankingsystem.enumeration.CurrencyEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,15 +20,21 @@ public class BankAccount {
 
     private String accountNumber;
 
-    private String currency;
+    private CurrencyEnum currency;
 
-    private double balance = 0;
+    private double balance = 0.0;
 
     @ManyToOne
     private BankUser owner;
 
     @ManyToOne
     private Bank bank;
+
+    @OneToMany(mappedBy = "senderAccount", cascade = CascadeType.ALL)
+    private List<Transaction> transactionsSent;
+
+    @OneToMany(mappedBy = "receiverAccount", cascade = CascadeType.ALL)
+    private List<Transaction> transactionsReceived;
 
     @OneToMany(mappedBy = "bankAccount", cascade = CascadeType.ALL)
     private List<Loan> loans;

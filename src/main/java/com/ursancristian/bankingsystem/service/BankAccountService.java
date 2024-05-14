@@ -29,6 +29,10 @@ public class BankAccountService {
         return bankAccountRepository.findById(accountId).orElse(null);
     }
 
+    public List<BankAccount> getAllBankAccounts() {
+        return bankAccountRepository.findAll();
+    }
+
     public void createBankAccount(BankAccountDTO bankAccountDTO) {
 
         BankAccount bankAccount = new BankAccount();
@@ -38,5 +42,45 @@ public class BankAccountService {
         bankAccount.setOwner(bankUserRepository.findById(bankAccountDTO.userId()).orElse(null));
 
         bankAccountRepository.save(bankAccount);
+    }
+
+    public void deleteBankAccount(int accountId) {
+        bankAccountRepository.deleteById(accountId);
+    }
+
+    public void updateBalance(int accountId, double amount) {
+        BankAccount bankAccount = bankAccountRepository.findById(accountId).orElse(null);
+        if (bankAccount == null) {
+            throw new RuntimeException("Bank account not found");
+        } else {
+            bankAccount.setBalance(bankAccount.getBalance() + amount);
+        }
+    }
+
+    public Double getBalanceById(int accountId) {
+        BankAccount bankAccount = bankAccountRepository.findById(accountId).orElse(null);
+        if (bankAccount == null) {
+            throw new RuntimeException("Bank account not found");
+        } else {
+            return bankAccount.getBalance();
+        }
+    }
+
+    public String getAccountNumberById(int accountId) {
+        BankAccount bankAccount = bankAccountRepository.findById(accountId).orElse(null);
+        if (bankAccount == null) {
+            throw new RuntimeException("Bank account not found");
+        } else {
+            return bankAccount.getAccountNumber();
+        }
+    }
+
+    public String getOwnerNameById(int accountId) {
+        BankAccount bankAccount = bankAccountRepository.findById(accountId).orElse(null);
+        if (bankAccount == null) {
+            throw new RuntimeException("Bank account not found");
+        } else {
+            return bankAccount.getOwner().getFirstName() + " " + bankAccount.getOwner().getLastName();
+        }
     }
 }
