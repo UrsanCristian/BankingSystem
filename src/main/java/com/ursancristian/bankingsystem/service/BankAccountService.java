@@ -48,12 +48,21 @@ public class BankAccountService {
         bankAccountRepository.deleteById(accountId);
     }
 
-    public void updateBalance(int accountId, double amount) {
+    public void addBalance(int accountId, double amount) {
         BankAccount bankAccount = bankAccountRepository.findById(accountId).orElse(null);
         if (bankAccount == null) {
             throw new RuntimeException("Bank account not found");
         } else {
             bankAccount.setBalance(bankAccount.getBalance() + amount);
+        }
+    }
+
+    public void subtractBalance(int accountId, double amount) {
+        BankAccount bankAccount = bankAccountRepository.findById(accountId).orElse(null);
+        if (bankAccount == null) {
+            throw new RuntimeException("Bank account not found");
+        } else {
+            bankAccount.setBalance(bankAccount.getBalance() - amount);
         }
     }
 
