@@ -32,4 +32,13 @@ public class BankService {
     public List<Bank> getAllBanks() {
         return bankRepository.findAll();
     }
+
+    public void subtractFromBudget(int bankId, double amount) {
+        Bank bank = bankRepository.findById(bankId).orElse(null);
+        if (bank == null) {
+            throw new RuntimeException("Bank not found");
+        } else {
+            bank.setBudget(bank.getBudget() - amount);
+        }
+    }
 }
