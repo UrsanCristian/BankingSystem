@@ -25,8 +25,6 @@ public class Loan {
 
     private LocalDate endDate;
 
-    private int duration;
-
     private double monthlyPayment;
 
     private boolean isPaid = false;
