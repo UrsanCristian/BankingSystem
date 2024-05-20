@@ -1,5 +1,8 @@
 package com.ursancristian.bankingsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.ursancristian.bankingsystem.enumeration.CurrencyEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -12,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class BankAccount {
     @Id
     @SequenceGenerator(name = "bank_account_id_seq", sequenceName = "bank_account_id_seq", allocationSize = 1)
@@ -25,6 +29,7 @@ public class BankAccount {
     private double balance = 0.0;
 
     @ManyToOne
+    @JsonBackReference
     private BankUser owner;
 
     @ManyToOne

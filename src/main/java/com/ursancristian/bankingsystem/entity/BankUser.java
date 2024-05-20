@@ -1,5 +1,8 @@
 package com.ursancristian.bankingsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class BankUser {
 
     @Id
@@ -40,6 +44,7 @@ public class BankUser {
     private String Role="USER";
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<BankAccount> bankAccounts;
 
 }
