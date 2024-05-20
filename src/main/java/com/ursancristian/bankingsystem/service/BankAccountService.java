@@ -1,8 +1,10 @@
 package com.ursancristian.bankingsystem.service;
 
 import com.ursancristian.bankingsystem.dto.BankAccountDTO;
+import com.ursancristian.bankingsystem.entity.Bank;
 import com.ursancristian.bankingsystem.entity.BankAccount;
 import com.ursancristian.bankingsystem.entity.BankUser;
+import com.ursancristian.bankingsystem.exception.BankAccountNotFoundException;
 import com.ursancristian.bankingsystem.repository.BankAccountRepository;
 import com.ursancristian.bankingsystem.repository.BankRepository;
 import com.ursancristian.bankingsystem.repository.BankUserRepository;
@@ -51,34 +53,37 @@ public class BankAccountService {
     public void addBalance(int accountId, double amount) {
         BankAccount bankAccount = bankAccountRepository.findById(accountId).orElse(null);
         if (bankAccount == null) {
-            throw new RuntimeException("Bank account not found");
+            throw new BankAccountNotFoundException("Bank account not found");
         } else {
             bankAccount.setBalance(bankAccount.getBalance() + amount);
         }
+        bankAccountRepository.save(bankAccount);
     }
 
     public void subtractBalance(int accountId, double amount) {
         BankAccount bankAccount = bankAccountRepository.findById(accountId).orElse(null);
         if (bankAccount == null) {
-            throw new RuntimeException("Bank account not found");
+            throw new BankAccountNotFoundException("Bank account not found");
         } else {
             bankAccount.setBalance(bankAccount.getBalance() - amount);
         }
+        bankAccountRepository.save(bankAccount);
     }
 
     public Double getBalanceById(int accountId) {
         BankAccount bankAccount = bankAccountRepository.findById(accountId).orElse(null);
         if (bankAccount == null) {
-            throw new RuntimeException("Bank account not found");
+            throw new BankAccountNotFoundException("Bank account not found");
         } else {
             return bankAccount.getBalance();
         }
+
     }
 
     public String getAccountNumberById(int accountId) {
         BankAccount bankAccount = bankAccountRepository.findById(accountId).orElse(null);
         if (bankAccount == null) {
-            throw new RuntimeException("Bank account not found");
+            throw new BankAccountNotFoundException("Bank account not found");
         } else {
             return bankAccount.getAccountNumber();
         }
@@ -87,9 +92,20 @@ public class BankAccountService {
     public String getOwnerNameById(int accountId) {
         BankAccount bankAccount = bankAccountRepository.findById(accountId).orElse(null);
         if (bankAccount == null) {
-            throw new RuntimeException("Bank account not found");
+            throw new BankAccountNotFoundException("Bank account not found");
         } else {
             return bankAccount.getOwner().getFirstName() + " " + bankAccount.getOwner().getLastName();
         }
     }
+
+    public List<BankAccount> getBankAccountsByBankId(int bankId) {
+
+        Bank bank = bankRepository.findById(bankId).orElse(null);
+        if (bank == null) {
+            throw new BankAccountNotFoundException("Bank not found");
+        }
+
+        return bankAccountRepository.findAllByBank(bank);
+    }
+
 }
