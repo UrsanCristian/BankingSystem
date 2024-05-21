@@ -11,4 +11,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
 
     List<Transaction> findAllBySenderAccountIdOrderByTransactionDateDesc(int accountId);
 
+    List<Transaction> findAllByReceiverAccountIdOrderByTransactionDateDesc(int accountId);
 }
