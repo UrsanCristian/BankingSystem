@@ -16,13 +16,13 @@ public class BankUserController {
     private final BankUserService bankUserService;
 
     @GetMapping
-    public List<BankUser> getUsers() {
+    public List<BankUser> bankUserList() {
         return bankUserService.getUsers();
 
     }
 
     @GetMapping("/{userId}")
-    public BankUser getUser(@PathVariable int userId) {
+    public BankUser bankUserDetails(@PathVariable int userId) {
         return bankUserService.getUser(userId);
     }
 

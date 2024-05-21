@@ -1,11 +1,9 @@
 package com.ursancristian.bankingsystem.service;
 
-import com.ursancristian.bankingsystem.entity.Bank;
 import com.ursancristian.bankingsystem.entity.BankUser;
 import com.ursancristian.bankingsystem.exception.UserNotFoundException;
 import com.ursancristian.bankingsystem.repository.BankUserRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
