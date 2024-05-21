@@ -16,25 +16,33 @@ public class BankAccountController {
     private final BankAccountService bankAccountService;
 
     @GetMapping
-    public List<BankAccount> getAllBankAccounts() {
+    public List<BankAccount> allBankAccounts() {
         return bankAccountService.getAllBankAccounts();
     }
 
-
     @GetMapping("/bank/{bank_id}")
-    public List<BankAccount> AllBankAccountsByBankId(@PathVariable int bank_id) {
+    public List<BankAccount> allBankAccountsByBankId(@PathVariable int bank_id) {
         return bankAccountService.getBankAccountsByBankId(bank_id);
     }
 
-
     @GetMapping("/user/{user_id}")
-    public List<BankAccount> getBankAccountsByUserId(@PathVariable int user_id) {
+    public List<BankAccount> bankAccountsByUserId(@PathVariable int user_id) {
         return bankAccountService.getBankAccountsByUserId(user_id);
     }
 
     @GetMapping("/{account_id}")
-    public BankAccount getBankAccount(@PathVariable int account_id) {
+    public BankAccount bankAccount(@PathVariable int account_id) {
         return bankAccountService.getBankAccount(account_id);
+    }
+
+    @GetMapping("/{account_id}/balance")
+    public Double balance(@PathVariable int account_id) {
+        return bankAccountService.getBalanceById(account_id);
+    }
+
+    @GetMapping("/{account_id}/account_number")
+    public String accountNumber(@PathVariable int account_id) {
+        return bankAccountService.getAccountNumberById(account_id);
     }
 
     @PostMapping("/{user_id}/create")
