@@ -1,5 +1,6 @@
 package com.ursancristian.bankingsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,5 +31,6 @@ public class Loan {
     private boolean isPaid = false;
 
     @ManyToOne
+    @JsonBackReference
     private BankAccount bankAccount;
 }

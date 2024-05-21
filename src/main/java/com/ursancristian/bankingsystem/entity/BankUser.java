@@ -6,11 +6,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import lombok.Setter;
 
 import java.time.LocalDate;
-
 import java.util.List;
 
 @Entity
@@ -41,7 +39,7 @@ public class BankUser {
 
     private LocalDate DateOfBirth;
 
-    private String Role="USER";
+    private String Role = "USER";
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     @JsonManagedReference

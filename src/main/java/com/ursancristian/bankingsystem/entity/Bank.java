@@ -1,5 +1,6 @@
 package com.ursancristian.bankingsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,8 +27,9 @@ public class Bank {
 
     private String contactEmail;
 
-    private Double budget=1000000.0;
+    private Double budget = 1000000.0;
 
     @OneToMany(mappedBy = "bank", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<BankAccount> bankAccounts;
 }

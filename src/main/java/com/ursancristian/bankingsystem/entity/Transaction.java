@@ -1,4 +1,6 @@
 package com.ursancristian.bankingsystem.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ursancristian.bankingsystem.enumeration.StatusEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -26,10 +28,12 @@ public class Transaction {
     private String description;
 
     @ManyToOne
+    @JsonBackReference
     private BankAccount senderAccount;
 
     @ManyToOne
+    @JsonBackReference
     private BankAccount receiverAccount;
 
-    private StatusEnum status;
+    private StatusEnum status = StatusEnum.INITIALIZED;
 }
