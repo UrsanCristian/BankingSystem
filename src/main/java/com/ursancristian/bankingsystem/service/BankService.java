@@ -2,6 +2,7 @@ package com.ursancristian.bankingsystem.service;
 
 import com.ursancristian.bankingsystem.dto.BankDTO;
 import com.ursancristian.bankingsystem.entity.Bank;
+import com.ursancristian.bankingsystem.exception.ElementNotFoundException;
 import com.ursancristian.bankingsystem.repository.BankRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,14 @@ public class BankService {
     }
 
     public Bank getBank(int bankId) {
-        return bankRepository.findById(bankId).orElse(null);
+        Bank bank = bankRepository.findById(bankId).orElse(null);
+
+        if (bank == null) {
+            throw new ElementNotFoundException("Bank not found");
+        } else {
+            return bank;
+        }
+
     }
 
     public List<Bank> getAllBanks() {
@@ -36,7 +44,7 @@ public class BankService {
     public void subtractFromBudget(int bankId, double amount) {
         Bank bank = bankRepository.findById(bankId).orElse(null);
         if (bank == null) {
-            throw new RuntimeException("Bank not found");
+            throw new ElementNotFoundException("Bank not found");
         } else {
             bank.setBudget(bank.getBudget() - amount);
         }
