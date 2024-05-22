@@ -28,6 +28,8 @@ public class Loan {
 
     private double monthlyPayment;
 
+    private double payedAmount = 0;
+
     private boolean isPaid = false;
 
     @ManyToOne
